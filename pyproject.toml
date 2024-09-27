@@ -1,0 +1,33 @@
+# For more info about toml format, look at
+# https://toml.io/en/
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project_name"
+version = "0.1.0"
+authors = [
+  { name="rotoclap", email="rotoclap@gmail.com" },
+]
+description = "<Insert a description>"
+readme = "README.MD"
+license = {file = "LICENSE"}
+requires-python = ">=3.12"
+
+# For more info about classifiers, loot at
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["<keyword1>", "<keyword2>", "<keyword3>"]
+
+# List here all needed packages
+dependencies = []
+
+[project.urls]
+Homepage = "<usually the github URL of the project>"
+Documentation = "<URL of the documentation on Read the Docs>"
+Issues = "<usually the github URL of the project issues page>"
