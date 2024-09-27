@@ -1,0 +1,4 @@
+pip-tools
+rich
+tox
+pytest
