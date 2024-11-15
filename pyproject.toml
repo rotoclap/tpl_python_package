@@ -7,14 +7,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "project_name"
-version = "0.1.0"
+version = "1.0.0"
 authors = [
   { name="rotoclap", email="rotoclap@gmail.com" },
 ]
 description = "<Insert a description>"
 readme = "README.MD"
 license = {file = "LICENSE"}
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 
 # For more info about classifiers, loot at
 # https://pypi.org/classifiers/
