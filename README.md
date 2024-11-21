@@ -26,19 +26,24 @@ If you have difficulty loading environment variables from .env file when activat
 For Command line terminal, open `.venv/Scripts/activate.bat` file and add this at the end :
 
 ```bat
-FOR /F "tokens=*" %%i in ('type %VIRTUAL_ENV%\..\.env') do SET %%i
+if EXIST %VIRTUAL_ENV%\..\.env (
+    FOR /F "tokens=*" %%i in ('type %VIRTUAL_ENV%\..\.env') do SET %%i
+)
 ```
 
 For Powershell terminal, open `.venv/Scripts/Activate.ps1` file and add this at the end :
 
 ```powershell
 $RootPath = $VenvExecDir.Parent.Parent.FullName.TrimEnd("\\/")
+$EnvFilePath = $RootPath + "/.env"
 
-Get-Content ($RootPath + "/.env") | foreach {
-    $name, $value = $_.split('=')
-    if ([string]::IsNullOrWhiteSpace($name) -or $name.Contains('#')) {
-        continue
+if (Test-Path $EnvFilePath -PathType leaf) {
+    Get-Content ($RootPath + "/.env") | foreach {
+        $name, $value = $_.split('=')
+        if ([string]::IsNullOrWhiteSpace($name) -or $name.Contains('#')) {
+            continue
+        }
+        Set-Content env:\$name $value
     }
-    Set-Content env:\$name $value
 }
 ```
