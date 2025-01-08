@@ -31,3 +31,9 @@ dependencies = []
 Homepage = "<usually the github URL of the project>"
 Documentation = "<URL of the documentation on Read the Docs>"
 Issues = "<usually the github URL of the project issues page>"
+
+[tool.setuptools.package-data]
+cagip = ["py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
