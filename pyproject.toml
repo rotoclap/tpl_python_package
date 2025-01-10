@@ -32,8 +32,16 @@ Homepage = "<usually the github URL of the project>"
 Documentation = "<URL of the documentation on Read the Docs>"
 Issues = "<usually the github URL of the project issues page>"
 
+[project.scripts]
+entry_point = "package.module:function"
+
 [tool.setuptools.package-data]
 cagip = ["py.typed"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
