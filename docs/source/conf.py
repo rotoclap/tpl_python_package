@@ -2,12 +2,12 @@
 
 # -- Project information
 
-project = "<your project>"
+project = "my_package"
 copyright = "<your name>"
 author = "<your name>"
 
-release = "1.0"
-version = "1.0.2"
+release = "1.1"
+version = "1.1.0"
 
 # -- General configuration
 

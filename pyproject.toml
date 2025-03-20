@@ -6,15 +6,15 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "project_name"
-version = "1.0.2"
+name = "my_package"
 authors = [
   { name="rotoclap", email="rotoclap@gmail.com" },
 ]
 description = "<Insert a description>"
-readme = "README.MD"
 license = {file = "LICENSE"}
 requires-python = ">=3.8"
+
+dynamic = ["version", "readme"]
 
 # For more info about classifiers, loot at
 # https://pypi.org/classifiers/
@@ -33,13 +33,17 @@ Documentation = "<URL of the documentation on Read the Docs>"
 Issues = "<usually the github URL of the project issues page>"
 
 [project.scripts]
-entry_point = "package.module:function"
+#entry_point = "my_package.module:function"
 
 [tool.setuptools.package-data]
 cagip = ["py.typed"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "my_package.__version__"}
+readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.pytest.ini_options]
 addopts = [
