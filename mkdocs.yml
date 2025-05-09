@@ -1,0 +1,18 @@
+site_name: Template package
+site_url: https://username.github.io/your_repo
+
+repo_url: https://github.com/username/your_repo
+
+nav:
+  - 'index.md'
+
+theme:
+  name: mkdocs
+  locale: en
+  highlightjs: true
+
+markdown_extensions:
+
+plugins:
+  - search
+  - mkdocstrings
