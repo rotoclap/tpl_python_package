@@ -2,38 +2,50 @@
 # https://toml.io/en/
 
 [build-system]
-requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+requires = ["setuptools"]
 
 [project]
-name = "my_package"
 authors = [
   { name="rotoclap", email="rotoclap@gmail.com" },
 ]
-description = "<Insert a description>"
-license = {file = "LICENSE"}
-requires-python = ">=3.8"
-
-dynamic = ["version", "readme"]
-
 # For more info about classifiers, loot at
 # https://pypi.org/classifiers/
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
 ]
-keywords = ["<keyword1>", "<keyword2>", "<keyword3>"]
-
 # List here all needed packages
 dependencies = []
+description = "<Insert a description>"
+dynamic = ["version", "readme"]
+keywords = ["<keyword1>", "<keyword2>", "<keyword3>"]
+license = {file = "LICENSE"}
+name = "my_package"
+requires-python = ">=3.8"
+
+[project.scripts]
+#entry_point = "my_package.module:function"
 
 [project.urls]
 Homepage = "<usually the github URL of the project>"
 Documentation = "<URL of the documentation on Read the Docs>"
 Issues = "<usually the github URL of the project issues page>"
 
-[project.scripts]
-#entry_point = "my_package.module:function"
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = ["my_package", "tests"]
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+markers = ["slow: mark test as slow to run"]
 
 [tool.setuptools.package-data]
 cagip = ["py.typed"]
@@ -42,13 +54,5 @@ cagip = ["py.typed"]
 where = ["src"]
 
 [tool.setuptools.dynamic]
-version = {attr = "my_package.__version__"}
 readme = {file = ["README.md"], content-type = "text/markdown"}
-
-[tool.pytest.ini_options]
-addopts = [
-    "--import-mode=importlib",
-]
-markers = [
-    "slow: mark test as slow to run"
-]
+version = {attr = "my_package.__version__"}

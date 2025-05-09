@@ -1,5 +1,7 @@
 import pytest
 
+import my_package
+
 
 def test_sample():
-    assert True
+    assert isinstance(my_package.__version__, str)
