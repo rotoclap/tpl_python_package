@@ -4,15 +4,33 @@ site_url: https://username.github.io/your_repo
 repo_url: https://github.com/username/your_repo
 
 nav:
-  - 'index.md'
+- 'index.md'
 
 theme:
-  name: mkdocs
+  name: material
   locale: en
   highlightjs: true
 
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 plugins:
-  - search
-  - mkdocstrings
+- search
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        options:
+          docstring_section_style: list
+          docstring_options:
+            ignore_init_summary: true
+          merge_init_into_class: true
+          show_root_heading: true
+          show_root_full_path: false
+          show_source: false
