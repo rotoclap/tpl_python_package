@@ -1,7 +1,0 @@
-pip-tools
-rich
-tox
-pytest
-mkdocs
-mkdocstrings[python]
-mkdocs-material
