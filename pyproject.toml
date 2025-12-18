@@ -2,27 +2,44 @@
 # https://toml.io/en/
 
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools"]
+requires = ["uv_build>=0.9.5,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
+name = "my_package"
+version = "1.7.0"
 authors = [
   { name="rotoclap", email="rotoclap@gmail.com" },
 ]
+description = "<Insert a description>"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+
 # For more info about classifiers, loot at
 # https://pypi.org/classifiers/
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
 ]
+keywords = ["<keyword1>", "<keyword2>", "<keyword3>"]
+
 # List here all needed packages
 dependencies = []
-description = "<Insert a description>"
-dynamic = ["version", "readme"]
-keywords = ["<keyword1>", "<keyword2>", "<keyword3>"]
-license = {file = "LICENSE"}
-name = "my_package"
-requires-python = ">=3.8"
+
+[dependency-groups]
+build = [
+    "nuitka>=2.8.9",
+]
+dev = [
+    "pytest>=8.3.5",
+    "rich>=14.2.0",
+]
+test = [
+    "covdefaults>=2.3.0",
+    "mypy>=1.14.1",
+    "pytest-cov>=5.0.0",
+]
 
 [project.scripts]
 #entry_point = "my_package.module:function"
@@ -32,27 +49,14 @@ Homepage = "<usually the github URL of the project>"
 Documentation = "<URL of the documentation on Read the Docs>"
 Issues = "<usually the github URL of the project issues page>"
 
-[tool.coverage.paths]
-source = ["src", "*/site-packages"]
+[tool.coverage.run]
+plugins = [
+    "covdefaults"
+]
 
 [tool.coverage.report]
-show_missing = true
-
-[tool.coverage.run]
-branch = true
-parallel = true
-source = ["my_package", "tests"]
+fail_under = 90
 
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
 markers = ["slow: mark test as slow to run"]
-
-[tool.setuptools.package-data]
-cagip = ["py.typed"]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.dynamic]
-readme = {file = ["README.md"], content-type = "text/markdown"}
-version = {attr = "my_package.__version__"}
