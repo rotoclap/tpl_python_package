@@ -10,18 +10,20 @@ default:
 
 # Setup development environment
 setup: && install-dev
-    uv tool install black
-    uv tool install isort
+    uv tool install ruff
     uv venv
 
 # Install development packages in venv
 install-dev:
     uv sync --group dev
 
-# Run linter (code style and quality checks)
+# Run linter
 lint:
-    uv run --group dev isort --profile black .
-    uv run --group dev black .
+    uv run --group dev ruff check --fix
+
+# Run formatter
+format:
+    uv run --group dev ruff format
 
 # Run type checker
 typecheck py_version=(project-python-version):
@@ -38,7 +40,7 @@ test py_version=(project-python-version) *args:
 test-full: (test "3.11") (test "3.12") (test "3.13") (test "3.14")
 
 # Run all checks (tests, linting, and type checking)
-check: clean test-full lint typecheck-full report
+check: clean test-full lint format typecheck-full report
 
 # Clean up temporary files and caches
 clean:
